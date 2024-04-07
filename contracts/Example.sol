@@ -11,4 +11,10 @@ contract Example {
   function getter() public view returns (uint8) {
     return state;
   }
+
+  function deposit() public payable {}
+
+  function getBalance() public view returns (uint256) {
+  	return address(this).balance;
+  }
 }
