@@ -8,11 +8,11 @@ contract Donation {
 	uint public totalDonated;
 	address payable public receiver;
 
-	constructor(uint _goal, address _receiver) {
+	constructor(uint _goal, address payable _receiver) public {
 		require(_goal > 0, "Goal must be greater than 0");
     goal = _goal;
-    fund = _fund;
+    receiver = _receiver;
     totalDonated = 0;
-    goalReached = false;
+    goalAchieved = false;
 	}
 }
