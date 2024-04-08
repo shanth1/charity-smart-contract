@@ -35,13 +35,17 @@ Ensure you have the following installed:
 
 Clone the repository and navigate to the project root. Then, install the necessary dependencies:
 
+```sh
 npm install
+```
 
 ### Compiling the Smart Contract
 
 Use the following make command to compile the smart contract:
 
+```sh
 make build
+```
 
 This command runs truffle compile which compiles the contract and prepares it for deployment.
 
@@ -49,7 +53,9 @@ This command runs truffle compile which compiles the contract and prepares it fo
 
 To deploy the smart contract to your local Ganache blockchain, use:
 
+```sh
 make migrate
+```
 
 This command performs a migration using Truffle, resetting any previous deployments if necessary.
 
@@ -57,7 +63,9 @@ This command performs a migration using Truffle, resetting any previous deployme
 
 To execute a custom script (e.g., index.js) within the Truffle environment against your local blockchain, run:
 
+```sh
 make run
+```
 
 This is useful for script-based interactions with your deployed contract, such as automated testing or administrative tasks.
 
