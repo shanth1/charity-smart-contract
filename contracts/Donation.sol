@@ -37,4 +37,8 @@ contract Donation {
       receiver.transfer(totalDonated);
     }
   }
+
+  function isGoalReached() public view returns (bool) {
+     return totalDonated >= goal;
+  }
 }

@@ -8,7 +8,7 @@ module.exports = async function (callback) {
     const isGoalReached = await donation.isGoalReached();
     console.log("[IS GOAL REACHED]", isGoalReached.toString());
 
-    const totalDonated = await donation.getTotalDonated();
+    const totalDonated = await donation.totalDonated();
     console.log("[TOTAL DONATED]", totalDonated.toString());
 
     const donateAmount = web3.utils.toWei("10", "ether");
