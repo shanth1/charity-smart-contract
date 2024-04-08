@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.6.0;
+pragma solidity >=0.5.0 <0.9.0;
 
 contract Donation {
 	uint public goal;
@@ -11,7 +11,7 @@ contract Donation {
 	event Donate(address donor, uint amount, uint totalDonated);
   event GoalReached(uint totalDonated);
 
-	constructor(uint _goal, address payable _receiver) public {
+	constructor(uint _goal, address payable _receiver) {
 		require(_goal > 0, "Goal must be greater than 0");
     goal = _goal;
     receiver = _receiver;
@@ -42,7 +42,7 @@ contract Donation {
     }
 	}
 
- 	function isGoalReached() public view returns (bool) {
+	function isGoalReached() public view returns (bool) {
  		return goalAchieved;
   }
 

@@ -1,31 +1,30 @@
-const Example = artifacts.require("./Example.sol");
+const Donation = artifacts.require("./Donation.sol");
 
-module.exports = async (callback) => {
+module.exports = async function (callback) {
   try {
-    const contract = await Example.deployed();
+    const donation = await Donation.deployed();
     const accounts = await web3.eth.getAccounts();
 
-    await contract.deposit({
-      from: accounts[2],
-      value: web3.utils.toWei("4", "ether"),
+    const isGoalReached = await donation.isGoalReached();
+    console.log("[IS GOAL REACHED]", isGoalReached.toString());
+
+    const totalDonated = await donation.getTotalDonated();
+    console.log("[TOTAL DONATED]", totalDonated.toString());
+
+    const donateAmount = web3.utils.toWei("10", "ether");
+    const shouldRefund = true;
+    const donor = accounts[0];
+
+    // Вызываем функцию donate контракта Donation
+    let result = await donation.donate(shouldRefund, {
+      from: donor,
+      value: donateAmount,
     });
 
-    const balance = await contract.getBalance();
-    console.log(
-      "Balance of contract:",
-      web3.utils.fromWei(balance.toString(), "ether"),
-      "ETH",
-    );
-
-    // const oldState = await contract.getter();
-    // console.log("Old state:", oldState.toString());
-
-    // await contract.setter(1);
-
-    // const newState = await contract.getter();
-    // console.log("New state:", newState.toString());
+    console.log("Transaction successful!", result.receipt);
   } catch (error) {
-    console.error(error);
+    console.log("Error:", error);
   }
+
   callback();
 };
